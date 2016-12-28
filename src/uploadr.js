@@ -1,5 +1,5 @@
 import React from 'react'
-import { Core, DragDrop, Tus10, Dashboard } from 'uppy'
+import { Core, DragDrop, Tus10, Dashboard, Webcam, Informer } from 'uppy'
 
 class UploadComponent extends React.Component {
   constructor() {
@@ -9,7 +9,9 @@ class UploadComponent extends React.Component {
     }
     this.uppy = new Core({debug: true, autoProceed: false})
     this.uppy
-      .use(DragDrop, {target: 'body'})
+      .use(Dashboard, {target: 'body', inline: true})
+      .use(Webcam, {target: Dashboard})
+      .use(Informer, {target: Dashboard})
       .use(Tus10, {
         endpoint: 'http://master.tus.io:8080/files/'
       })
